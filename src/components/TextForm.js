@@ -23,6 +23,17 @@ export default function TextForm(props) {
         setText("");
     }
 
+    const removeExtraSpaces = ()=>{
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+
+    const handleCopy = ()=>{
+        let text = document.getElementById("myBox");
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+
     const handleOnChange = (event) => {
         console.log("on change");
         setText(event.target.value);
@@ -38,12 +49,14 @@ export default function TextForm(props) {
         <div className='container my-2'>
             <h1 className="text-start">{props.heading} </h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="6"></textarea>
+                <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="6"></textarea>
             </div>
 
             <button type="button" onClick={handleUpClick} className="btn btn-primary mx-2">Convert to Uppercase</button>
             <button type="button" onClick={handleLowerClick} className="btn btn-primary mx-2">Convert to lowercase</button>
             <button type="button" onClick={handleClearClick} className="btn btn-primary mx-2">Clear</button>
+            <button type="button" onClick={removeExtraSpaces} className="btn btn-primary mx-2">Remove Extra spaces</button>
+            <button type="button" onClick={handleCopy} className="btn btn-primary mx-2">Copy Text</button>
         </div>
 
         <div className="container my-3 border ">
