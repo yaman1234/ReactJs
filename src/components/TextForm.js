@@ -11,6 +11,13 @@ export default function TextForm(props) {
         setText(newText);
     }
 
+    const handleLowerClick = () => {
+        console.log("handleLowerClick was clicked");
+        setText("you have clicked the handleLowerClick" + text)
+        let newText = text.toLowerCase();
+        setText(newText);
+    }
+
     const handleOnChange = (event) => {
         console.log("on change");
         setText(event.target.value);
@@ -22,13 +29,26 @@ export default function TextForm(props) {
     // setText('new Text');     // correct way to update state
 
     return (
-        <div>
+        <>
+        <div className='container my-2'>
             <h1 className="text-start">{props.heading} </h1>
             <div className="mb-3">
                 <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="6"></textarea>
             </div>
 
-            <button type="button text-start" onClick={handleUpClick} className="btn btn-primary">Convert to Uppercase</button>
+            <button type="button" onClick={handleUpClick} className="btn btn-primary mx-2">Convert to Uppercase</button>
+            <button type="button" onClick={handleLowerClick} className="btn btn-primary mx-2">Convert to lowercase</button>
         </div>
+
+        <div className="container my-3 border ">
+        <h1 className="text-start">Your Text summary</h1>
+        <p className="text-start">{text.split(" ").length -1} words , {text.length} characters</p>
+        <p className="text-start">{0.008*(text.split(" ").length - 1)} minutes read</p>
+
+        <h2 className="text-start">Preview</h2>
+        <p className="text-start">{text}</p>
+        </div>
+
+        </>
     )
 }
