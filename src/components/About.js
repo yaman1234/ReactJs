@@ -10,7 +10,7 @@ export default function About() {
     const [btntext, setBtnText] = useState("Enable dark mode")
 
     const toggleStyle = () => {
-        if (mystyle.color == 'white') {
+        if (mystyle.color === 'white') {
             setMyStyle({
                 color: 'black',
                 backgroundColor: 'white'
@@ -21,7 +21,7 @@ export default function About() {
                 color: 'white',
                 backgroundColor: 'black'
             })
-            setBtnText("Enable light mode");
+            setBtnText("Disable dark mode");
         }
     }
 
@@ -29,7 +29,17 @@ export default function About() {
     return (
         <div>
             <div className="container" style={mystyle}>
-                <h1>About Us</h1>
+
+                <div className="container my-4 d-flex justify-content-between">
+                    <h1>About Us</h1>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={toggleStyle} />
+                        <label class="form-check-label" for="flexSwitchCheckDefault">{btntext}</label>
+                    </div>
+                </div>
+
+
+
                 <div className="accordion" id="accordionExample" >
                     <div className="accordion-item">
                         <h2 className="accordion-header">
@@ -69,9 +79,6 @@ export default function About() {
                     </div>
                 </div>
 
-                <div className="container my-4">
-                    <button className='btn btn-primary' onClick={toggleStyle}> {btntext} </button>
-                </div>
 
             </div>
         </div>
