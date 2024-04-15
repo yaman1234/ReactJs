@@ -18,6 +18,11 @@ export default function TextForm(props) {
         setText(newText);
     }
 
+    const handleClearClick = () => {
+        console.log("handleClearClick was clicked");
+        setText("");
+    }
+
     const handleOnChange = (event) => {
         console.log("on change");
         setText(event.target.value);
@@ -38,6 +43,7 @@ export default function TextForm(props) {
 
             <button type="button" onClick={handleUpClick} className="btn btn-primary mx-2">Convert to Uppercase</button>
             <button type="button" onClick={handleLowerClick} className="btn btn-primary mx-2">Convert to lowercase</button>
+            <button type="button" onClick={handleClearClick} className="btn btn-primary mx-2">Clear</button>
         </div>
 
         <div className="container my-3 border ">
@@ -45,6 +51,7 @@ export default function TextForm(props) {
         <p className="text-start">{text.split(" ").length -1} words , {text.length} characters</p>
         <p className="text-start">{0.008*(text.split(" ").length - 1)} minutes read</p>
 
+        
         <h2 className="text-start">Preview</h2>
         <p className="text-start">{text}</p>
         </div>
